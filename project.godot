@@ -1,0 +1,89 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="SOČ"
+config/version="0.1"
+run/main_scene="res://Main.tscn"
+config/features=PackedStringArray("4.4", "Mobile")
+boot_splash/show_image=false
+
+[autoload]
+
+AssetLoader="*res://assetLoader.gd"
+
+[compression]
+
+formats/zstd/long_distance_matching=true
+formats/zstd/compression_level=22
+formats/zlib/compression_level=9
+formats/gzip/compression_level=9
+
+[display]
+
+window/vsync/vsync_mode=2
+
+[editor]
+
+movie_writer/mix_rate=44100
+export/convert_text_resources_to_binary=false
+
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
+theme/default_font_generate_mipmaps=true
+
+[importer_defaults]
+
+3d_texture={
+&"compress/channel_pack": 1,
+&"compress/mode": 4
+}
+2d_array_texture={
+&"compress/channel_pack": 1,
+&"compress/mode": 4
+}
+texture={
+&"compress/channel_pack": 1,
+&"compress/mode": 4,
+&"detect_3d/compress_to": 2,
+&"mipmaps/generate": true
+}
+
+[physics]
+
+2d/run_on_separate_thread=true
+3d/run_on_separate_thread=true
+common/physics_jitter_fix=0.75
+
+[rendering]
+
+occlusion_culling/bvh_build_quality=0
+textures/canvas_textures/default_texture_filter=2
+renderer/rendering_method="mobile"
+driver/threads/thread_model=2
+textures/vram_compression/import_etc2_astc=true
+textures/webp_compression/compression_method=6
+textures/webp_compression/lossless_compression_factor=100.0
+textures/default_filters/anisotropic_filtering_level=4
+anti_aliasing/quality/msaa_3d=1
+textures/default_filters/texture_mipmap_bias=-0.5
+textures/decals/filter=5
+textures/light_projectors/filter=5
+occlusion_culling/occlusion_rays_per_thread=256
+occlusion_culling/use_occlusion_culling=true
+2d/snap/snap_2d_vertices_to_pixel=true
+vrs/mode=2
+
+[xr]
+
+openxr/enabled=true
+shaders/enabled=true
