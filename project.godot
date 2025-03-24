@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="SOČ"
-config/version="0.1"
+config/name="Schoollery"
+config/version="0.2"
 run/main_scene="res://Main.tscn"
 config/features=PackedStringArray("4.5", "Mobile")
 boot_splash/show_image=false
@@ -62,7 +62,8 @@ texture={
 
 2d/run_on_separate_thread=true
 3d/run_on_separate_thread=true
-common/physics_jitter_fix=0.75
+common/physics_ticks_per_second=30
+common/physics_interpolation=true
 
 [rendering]
 
@@ -78,9 +79,8 @@ anti_aliasing/quality/msaa_3d=1
 textures/default_filters/texture_mipmap_bias=-0.5
 textures/decals/filter=5
 textures/light_projectors/filter=5
-occlusion_culling/occlusion_rays_per_thread=256
+occlusion_culling/occlusion_rays_per_thread=128
 occlusion_culling/use_occlusion_culling=true
-2d/snap/snap_2d_vertices_to_pixel=true
 vrs/mode=2
 
 [xr]
