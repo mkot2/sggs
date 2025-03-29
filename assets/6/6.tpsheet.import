@@ -1,0 +1,16 @@
+[remap]
+
+importer="codeandweb.texturepacker_import_spritesheet"
+type="Resource"
+uid="uid://bb47nnygfukub"
+path="res://.godot/imported/6.tpsheet-e31a6dd35d6d44e341e87a58a69268a4.res"
+
+[deps]
+
+files=["res://assets/6/6.sprites/63.tres", "res://assets/6/6.sprites/62.tres", "res://assets/6/6.sprites/11.tres", "res://assets/6/6.sprites/12.tres", "res://assets/6/6.sprites/13.tres", "res://assets/6/6.sprites/21.tres", "res://assets/6/6.sprites/22.tres", "res://assets/6/6.sprites/23.tres", "res://assets/6/6.sprites/31.tres", "res://assets/6/6.sprites/32.tres", "res://assets/6/6.sprites/33.tres", "res://assets/6/6.sprites/41.tres", "res://assets/6/6.sprites/42.tres", "res://assets/6/6.sprites/43.tres", "res://assets/6/6.sprites/51.tres", "res://assets/6/6.sprites/52.tres", "res://assets/6/6.sprites/53.tres", "res://assets/6/6.sprites/61.tres", "res://assets/6/6.sprites/71.tres", "res://assets/6/6.sprites/72.tres", "res://assets/6/6.sprites/73.tres", "res://assets/6/6.sprites/81.tres", "res://assets/6/6.sprites/82.tres", "res://assets/6/6.sprites/83.tres"]
+
+source_file="res://assets/6/6.tpsheet"
+dest_files=["res://.godot/imported/6.tpsheet-e31a6dd35d6d44e341e87a58a69268a4.res", "res://assets/6/6.sprites/63.tres", "res://assets/6/6.sprites/62.tres", "res://assets/6/6.sprites/11.tres", "res://assets/6/6.sprites/12.tres", "res://assets/6/6.sprites/13.tres", "res://assets/6/6.sprites/21.tres", "res://assets/6/6.sprites/22.tres", "res://assets/6/6.sprites/23.tres", "res://assets/6/6.sprites/31.tres", "res://assets/6/6.sprites/32.tres", "res://assets/6/6.sprites/33.tres", "res://assets/6/6.sprites/41.tres", "res://assets/6/6.sprites/42.tres", "res://assets/6/6.sprites/43.tres", "res://assets/6/6.sprites/51.tres", "res://assets/6/6.sprites/52.tres", "res://assets/6/6.sprites/53.tres", "res://assets/6/6.sprites/61.tres", "res://assets/6/6.sprites/71.tres", "res://assets/6/6.sprites/72.tres", "res://assets/6/6.sprites/73.tres", "res://assets/6/6.sprites/81.tres", "res://assets/6/6.sprites/82.tres", "res://assets/6/6.sprites/83.tres"]
+
+[params]
+

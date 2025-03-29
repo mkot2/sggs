@@ -36,6 +36,10 @@ window/vsync/vsync_mode=2
 movie_writer/mix_rate=44100
 export/convert_text_resources_to_binary=false
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/codeandweb.texturepacker/plugin.cfg")
+
 [gui]
 
 theme/default_font_multichannel_signed_distance_field=true
@@ -63,6 +67,7 @@ texture={
 2d/run_on_separate_thread=true
 3d/run_on_separate_thread=true
 common/physics_ticks_per_second=30
+3d/physics_engine="Jolt Physics"
 common/physics_interpolation=true
 
 [rendering]

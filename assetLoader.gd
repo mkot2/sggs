@@ -23,12 +23,12 @@ func _ready():
 		list.get_value(sec, "media", ""), list.get_value(sec, "era", "")]
 
 func display_painting_scaled(ver: String, painting: Node, init=false, labelr: Node=null, info: Node=null):
-	var id = painting.get_meta("Base") + "." + painting.get_meta("Painting")
+	var id = painting.get_parent().get_meta("Base") + painting.get_parent().get_meta("Painting")
 	music_player.stop()
 	music_player.seek(0.0)
 	var audio_dat = load("res://assets/"+ ver + "/" + id + ".ogg")
 	music_player.stream = audio_dat
-	painting.texture = load("res://assets/"+ ver + "/" + id + ".png")
+	painting.texture = load("res://assets/"+ ver + "/" + ver + ".sprites/" + id + ".tres")
 
 	if init:
 		var main_container = labelr.get_child(0).get_child(0).get_child(0).get_child(0) # VBoxContainer

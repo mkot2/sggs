@@ -1,0 +1,318 @@
+[gd_scene load_steps=15 format=3 uid="uid://7jgg7bxfif1s"]
+
+[ext_resource type="Theme" uid="uid://qgpwju71khg2" path="res://assets/guitheme.tres" id="1_6y5hu"]
+[ext_resource type="LabelSettings" uid="uid://cupigjaa2wbga" path="res://assets/panel_text_settings.tres" id="2_6mfu7"]
+[ext_resource type="Texture2D" uid="uid://phwjlqmhsp6s" path="res://assets/gui/pause.svg" id="3_iphtx"]
+[ext_resource type="Texture2D" uid="uid://p2cnfgqos6q4" path="res://assets/gui/play.svg" id="4_hyb0f"]
+[ext_resource type="Texture2D" uid="uid://hh0js4uxb54" path="res://assets/gui/stop.svg" id="5_fsmrr"]
+[ext_resource type="FontFile" uid="uid://hm5r5q7tv28r" path="res://assets/Roboto-Regular.ttf" id="6_g8s4o"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_suqy4"]
+viewport_path = NodePath("LabelDisplay/LabelView")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_6r0ej"]
+viewport_path = NodePath("SwitchPanel/SwitchPanel")
+
+[sub_resource type="GDScript" id="GDScript_xum37"]
+script/source = "extends SubViewport
+
+@onready var parent = get_node(\"../../Painting\")
+@onready var labelr = get_node(\"../../LabelDisplay\")
+@onready var info = get_node(\"../../Info\")
+@onready var root = get_node(\"../../\")
+
+func _ready():
+	AssetLoader.display_painting_scaled(root.get_meta(\"Base\"), parent, true, labelr, info)
+
+func _load_and_stuff(ver):
+	AssetLoader.display_painting_scaled(ver, parent)
+
+func _on_da_button_pressed():
+	_load_and_stuff(\"1\")
+	
+func _on_rn_button_pressed():
+	_load_and_stuff(\"2\")
+
+func _on_pa_button_pressed():
+	_load_and_stuff(\"3\")
+
+func _on_sc_button_pressed():
+	_load_and_stuff(\"4\")
+
+func _on_sr_button_pressed():
+	_load_and_stuff(\"5\")
+	
+func _on_pi_button_pressed():
+	_load_and_stuff(\"6\")
+	
+func _on_rr_button_pressed():
+	_load_and_stuff(\"7\")
+
+func _on_ca_button_pressed():
+	_load_and_stuff(\"8\")
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_a53ae"]
+font_size = 32
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3vf5a"]
+margin = 0.0
+size = Vector3(0.497577, 0.287411, 0.01)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_rb3pp"]
+viewport_path = NodePath("ControlPanel/ControlPanel")
+
+[sub_resource type="GDScript" id="GDScript_dedts"]
+script/source = "extends SubViewport
+
+@onready var audio_player = get_node(\"/root/Node3D/XROrigin3D/MusicPlayer\")
+@onready var info = get_node(\"../../Info\")
+
+var music_position: float = 0.0
+var paused: bool = false
+
+func _on_pause_button_pressed():
+	paused = true
+	music_position = audio_player.get_playback_position()
+	audio_player.stop()
+
+func _on_play_button_pressed():
+	if paused:
+		audio_player.play(music_position)
+		paused = false
+	else:
+		audio_player.play()
+
+func _on_stop_button_pressed():
+	audio_player.stop()
+	audio_player.seek(0.0)
+
+func _on_info_button_toggled(toggled_on):
+	info.visible = toggled_on
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pm32y"]
+size = Vector3(0.387331, 0.109131, 0.01)
+
+[node name="Display" type="Node3D"]
+
+[node name="LabelDisplay" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.145, 0.824, 0)
+pixel_size = 0.0011
+double_sided = false
+texture_filter = 5
+texture = SubResource("ViewportTexture_suqy4")
+region_rect = Rect2(0, 0, 450, 250)
+
+[node name="LabelView" type="SubViewport" parent="LabelDisplay"]
+disable_3d = true
+size = Vector2i(450, 264)
+
+[node name="Control" type="Control" parent="LabelDisplay/LabelView"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_6y5hu")
+
+[node name="MarginContainer" type="MarginContainer" parent="LabelDisplay/LabelView/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LabelDisplay/LabelView/Control/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Author" type="Label" parent="LabelDisplay/LabelView/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+label_settings = ExtResource("2_6mfu7")
+
+[node name="Name" type="Label" parent="LabelDisplay/LabelView/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+label_settings = ExtResource("2_6mfu7")
+
+[node name="Media" type="Label" parent="LabelDisplay/LabelView/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+label_settings = ExtResource("2_6mfu7")
+
+[node name="Style" type="Label" parent="LabelDisplay/LabelView/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+label_settings = ExtResource("2_6mfu7")
+
+[node name="SwitchPanel" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.145, 0.508, 0)
+cast_shadow = 0
+pixel_size = 0.0011
+double_sided = false
+texture_filter = 5
+texture = SubResource("ViewportTexture_6r0ej")
+
+[node name="SwitchPanel" type="SubViewport" parent="SwitchPanel"]
+disable_3d = true
+size = Vector2i(450, 264)
+script = SubResource("GDScript_xum37")
+
+[node name="Control2" type="Control" parent="SwitchPanel/SwitchPanel"]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -225.0
+offset_right = -225.0
+grow_horizontal = 2
+theme = ExtResource("1_6y5hu")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="SwitchPanel/SwitchPanel/Control2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = 20.0
+offset_right = 450.0
+offset_bottom = 284.0
+grow_horizontal = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="SwitchPanel/SwitchPanel/Control2/VBoxContainer2"]
+layout_mode = 2
+text = "Štýly"
+label_settings = SubResource("LabelSettings_a53ae")
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="SwitchPanel/SwitchPanel/Control2/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+columns = 2
+
+[node name="Button1" type="Button" parent="SwitchPanel/SwitchPanel/Control2/VBoxContainer2/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Starovek"
+
+[node name="Button2" type="Button" parent="SwitchPanel/SwitchPanel/Control2/VBoxContainer2/GridContainer"]
+custom_minimum_size = Vector2(192, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Stredovek"
+
+[node name="Button3" type="Button" parent="SwitchPanel/SwitchPanel/Control2/VBoxContainer2/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Renesancia"
+
+[node name="Button4" type="Button" parent="SwitchPanel/SwitchPanel/Control2/VBoxContainer2/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Barok"
+
+[node name="Button5" type="Button" parent="SwitchPanel/SwitchPanel/Control2/VBoxContainer2/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Neoklasicizmus"
+
+[node name="Button6" type="Button" parent="SwitchPanel/SwitchPanel/Control2/VBoxContainer2/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Romantizmus"
+
+[node name="Button7" type="Button" parent="SwitchPanel/SwitchPanel/Control2/VBoxContainer2/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Realizmus"
+
+[node name="Button8" type="Button" parent="SwitchPanel/SwitchPanel/Control2/VBoxContainer2/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Moderná doba"
+
+[node name="SwitchPanelBox" type="Area3D" parent="SwitchPanel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0057801, -0.0010004)
+
+[node name="CollisionBox3D" type="CollisionShape3D" parent="SwitchPanel/SwitchPanelBox"]
+transform = Transform3D(1, 0, 7.17648e-13, 0, 1, 0, -7.17648e-13, 0, 1, -0.00101471, 0.00505321, 2.86102e-06)
+shape = SubResource("BoxShape3D_3vf5a")
+
+[node name="ControlPanel" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.145, 0.281478, 0)
+pixel_size = 0.0011
+double_sided = false
+texture_filter = 5
+texture = SubResource("ViewportTexture_rb3pp")
+
+[node name="ControlPanel" type="SubViewport" parent="ControlPanel"]
+size = Vector2i(363, 102)
+script = SubResource("GDScript_dedts")
+
+[node name="MarginContainer" type="MarginContainer" parent="ControlPanel/ControlPanel"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ControlPanel/ControlPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="PauseButton" type="Button" parent="ControlPanel/ControlPanel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("3_iphtx")
+
+[node name="PlayButton" type="Button" parent="ControlPanel/ControlPanel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("4_hyb0f")
+
+[node name="StopButton" type="Button" parent="ControlPanel/ControlPanel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("5_fsmrr")
+
+[node name="InfoButton" type="Button" parent="ControlPanel/ControlPanel/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(72, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+toggle_mode = true
+text = "i"
+
+[node name="ControlPanelBox" type="Area3D" parent="ControlPanel"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ControlPanel/ControlPanelBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00495911, 0.000610352, 0)
+shape = SubResource("BoxShape3D_pm32y")
+
+[node name="Painting" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.655142, 0)
+pixel_size = 0.002
+shaded = true
+double_sided = false
+texture_filter = 5
+region_rect = Rect2(0, 0, 1600, 900)
+
+[node name="Info" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.505653, 0.0423493, 0)
+visible = false
+pixel_size = 0.0011
+double_sided = false
+texture_filter = 5
+font = ExtResource("6_g8s4o")
+font_size = 35
+outline_size = 3
+
+[connection signal="pressed" from="SwitchPanel/SwitchPanel/Control2/VBoxContainer2/GridContainer/Button1" to="SwitchPanel/SwitchPanel" method="_on_da_button_pressed"]
+[connection signal="pressed" from="SwitchPanel/SwitchPanel/Control2/VBoxContainer2/GridContainer/Button2" to="SwitchPanel/SwitchPanel" method="_on_rn_button_pressed"]
+[connection signal="pressed" from="SwitchPanel/SwitchPanel/Control2/VBoxContainer2/GridContainer/Button3" to="SwitchPanel/SwitchPanel" method="_on_pa_button_pressed"]
+[connection signal="pressed" from="SwitchPanel/SwitchPanel/Control2/VBoxContainer2/GridContainer/Button4" to="SwitchPanel/SwitchPanel" method="_on_sc_button_pressed"]
+[connection signal="pressed" from="SwitchPanel/SwitchPanel/Control2/VBoxContainer2/GridContainer/Button5" to="SwitchPanel/SwitchPanel" method="_on_sr_button_pressed"]
+[connection signal="pressed" from="SwitchPanel/SwitchPanel/Control2/VBoxContainer2/GridContainer/Button6" to="SwitchPanel/SwitchPanel" method="_on_pi_button_pressed"]
+[connection signal="pressed" from="SwitchPanel/SwitchPanel/Control2/VBoxContainer2/GridContainer/Button7" to="SwitchPanel/SwitchPanel" method="_on_rr_button_pressed"]
+[connection signal="pressed" from="SwitchPanel/SwitchPanel/Control2/VBoxContainer2/GridContainer/Button8" to="SwitchPanel/SwitchPanel" method="_on_ca_button_pressed"]
+[connection signal="pressed" from="ControlPanel/ControlPanel/MarginContainer/HBoxContainer/PauseButton" to="ControlPanel/ControlPanel" method="_on_pause_button_pressed"]
+[connection signal="pressed" from="ControlPanel/ControlPanel/MarginContainer/HBoxContainer/PlayButton" to="ControlPanel/ControlPanel" method="_on_play_button_pressed"]
+[connection signal="pressed" from="ControlPanel/ControlPanel/MarginContainer/HBoxContainer/StopButton" to="ControlPanel/ControlPanel" method="_on_stop_button_pressed"]
+[connection signal="toggled" from="ControlPanel/ControlPanel/MarginContainer/HBoxContainer/InfoButton" to="ControlPanel/ControlPanel" method="_on_info_button_toggled"]
